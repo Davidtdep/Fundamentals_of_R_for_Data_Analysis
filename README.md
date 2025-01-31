@@ -4,7 +4,7 @@
 This repository contains materials for the **Fundamentals of R for Data Analysis** course. This is a **5-week in-person course** designed for university students interested in learning data manipulation, analysis, and visualization using R.
 
 **📍 Organized by:**
-- Prometeus Biomedicina Aplicada a las Ciencias Clínicas, Universidad de Cartagena.
+- Grupo Prometeus Biomedicina Aplicada a las Ciencias Clínicas, Universidad de Cartagena.
 - Center for Meta-Research and Scientometrics in Biomedical Sciences, Barranquilla, Colombia.
 
 **🎓 Instructor:** David A. Hernandez-Paez, Medical Student.
