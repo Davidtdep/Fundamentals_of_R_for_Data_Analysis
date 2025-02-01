@@ -1,44 +1,81 @@
-    ---
+html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 1 - Introduction to R & Data Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark.min.css">
+    <style>
+        .reveal section img { max-width: 100%; height: auto; }
+        pre code { font-size: 1.2em; display: block; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>📊 Introduction to R & Data Visualization</h1>
+                <h3>Fundamentals of R for Data Analysis</h3>
+                <p><strong>Instructor:</strong> David A. Hernandez-Paez</p>
+                <p>University of Cartagena</p>
+            </section>
+            
+            <section>
+                <h2>🛠️ Getting Started with R</h2>
+                <ul>
+                    <li>Install <strong>R</strong> and <strong>RStudio</strong></li>
+                    <li>RStudio interface overview</li>
+                    <li>Basic operations in R</li>
+                </ul>
+            </section>
 
-    # 🛠️ Getting Started with R  
-    - Install **R** and **RStudio**  
-    - RStudio interface overview  
-    - Basic operations in R  
+            <section>
+                <h2>🎨 What is ggplot2?</h2>
+                <ul>
+                    <li>Part of the <strong>tidyverse</strong></li>
+                    <li>Based on <strong>Grammar of Graphics</strong></li>
+                    <li>Allows layered plotting</li>
+                </ul>
+                <pre><code class="language-r">library(ggplot2)
 
-    ---
+ggplot(mtcars, aes(x=mpg, y=hp)) + 
+  geom_point()</code></pre>
+            </section>
 
-    # 🎨 What is ggplot2?  
-    - Part of the **tidyverse**  
-    - Based on **Grammar of Graphics**  
-    - Allows layered plotting  
+            <section>
+                <h2>📊 Barplot Example</h2>
+                <pre><code class="language-r">ggplot(mtcars, aes(x=factor(cyl))) + 
+  geom_bar()</code></pre>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Ggplot2-bar-chart.png" alt="Barplot Example">
+            </section>
 
-    ```r
-    library(ggplot2)
-    ggplot(mtcars, aes(x=mpg, y=hp)) + geom_point()
-    ```
+            <section>
+                <h2>📊 Scatter Plot Example</h2>
+                <pre><code class="language-r">ggplot(mtcars, aes(x=mpg, y=hp)) + 
+  geom_point()</code></pre>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Ggplot2-scatter-plot.png" alt="Scatterplot">
+            </section>
 
-    ---
+            <section>
+                <h2>🎯 Summary</h2>
+                <ul>
+                    <li><strong>ggplot2</strong> is powerful and flexible</li>
+                    <li>Basic plots: <strong>barplots, scatterplots, boxplots, line charts</strong></li>
+                    <li>Next steps: <strong>customizing themes & colors</strong></li>
+                </ul>
+                <h3>🚀 Let's practice!</h3>
+            </section>
+        </div>
+    </div>
+    <script>
+        Reveal.initialize();
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
 
-    # 📊 Barplot Example  
-    ```r
-    ggplot(mtcars, aes(x=factor(cyl))) + geom_bar()
-    ```
-    ![Barplot Example](https://upload.wikimedia.org/wikipedia/commons/8/89/Ggplot2-bar-chart.png)
-
-    ---
-
-    # 📊 Scatter Plot Example  
-    ```r
-    ggplot(mtcars, aes(x=mpg, y=hp)) + geom_point()
-    ```
-    ![Scatterplot](https://upload.wikimedia.org/wikipedia/commons/9/92/Ggplot2-scatter-plot.png)
-
-    ---
-
-    # 🎯 Summary  
-    - **ggplot2** is powerful and flexible  
-    - Basic plots: **barplots, scatterplots, boxplots, line charts**  
-    - Next steps: **customizing themes & colors**  
-
-    🚀 **Let's practice!**  
-</marp>
