@@ -1,53 +1,10 @@
 # Load the tidyverse package (which includes dplyr, ggplot2, etc.)
 library(tidyverse)
 
-# =============================================================================
-# Step 1: Create a Fictional Medical Study Dataset and Export as CSV
-# =============================================================================
 
-# Set seed for reproducibility
-set.seed(123)
-
-# Define the number of patients in our study
-n <- 150
-
-# Create a dataset simulating a study on hypertensive patients.
-# Each patient has high pre-treatment blood pressure.
-medical_data <- tibble(
-  PatientID = 1:n,
-  Age = sample(30:80, n, replace = TRUE),
-  Gender = sample(c("Male", "Female"), n, replace = TRUE),
-  Treatment = sample(c("Drug", "Placebo"), n, replace = TRUE),
-  MeasurementDate = sample(seq(as.Date("2023-03-01"), as.Date("2023-03-10"), by = "day"), n, replace = TRUE),
-  # High pre-treatment blood pressure values
-  Pre_Systolic = rnorm(n, mean = 180, sd = 10),
-  Pre_Diastolic = rnorm(n, mean = 110, sd = 5),
-  Cholesterol = rnorm(n, mean = 200, sd = 30)
-) %>%
-  mutate(
-    # For patients receiving the "Drug", simulate a significant reduction in systolic BP.
-    # Post-treatment systolic pressure is drawn from a distribution with mean 120 and SD 5.
-    # For the placebo group, post-treatment values remain equal to pre-treatment.
-    Post_Systolic = if_else(Treatment == "Drug",
-                            rnorm(n(), mean = 120, sd = 5),
-                            Pre_Systolic),
-    # Similarly, for diastolic pressure: Drug group sees a reduction (target mean 80),
-    # while the placebo group remains unchanged.
-    Post_Diastolic = if_else(Treatment == "Drug",
-                             rnorm(n(), mean = 80, sd = 5),
-                             Pre_Diastolic),
-    # Calculate the reduction in systolic BP (Pre - Post)
-    Systolic_Reduction = Pre_Systolic - Post_Systolic
-  )
-
-# Export the dataset to a CSV file named "medical_study_data.csv"
-write_csv(medical_data, "medical_study_data.csv")
-
-# (Optional) Print the first few rows to inspect the data structure
-print(head(medical_data))
 
 # =============================================================================
-# Step 2: Import the CSV File and Perform Analysis & Visualization
+# Step 1: Import the CSV File and Perform Analysis & Visualization
 # =============================================================================
 
 # Import the CSV file into R using the specified path
