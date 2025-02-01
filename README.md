@@ -24,13 +24,13 @@ Train participants in the use of **R** for data manipulation, analysis, and visu
 
 ## 📅 Course Structure
 
-| **Session** | **Topic** | **Key Activities** |
-|------------|----------|------------------|
-| 1️⃣ | Introduction to R and RStudio | Installation, basic operations, and data visualization (ggplot2) |
-| 2️⃣ | Statistical Testing | Hypothesis testing (Mann-Whitney, Wilcoxon, ANOVA, etc.) with visualization |
-| 3️⃣ | Correlation & Regression | Correlation analysis, regression modeling, and heatmaps |
-| 4️⃣ | ROC Curves & Feedback | ROC analysis, review session, and project briefing |
-| 5️⃣ | Final Project | Real dataset analysis, presentation, and peer review |
+| **Session** | **Topic** | **Key Activities** | **Slides** |
+|------------|----------|------------------|------------|
+| 1️⃣ | Introduction to R and RStudio | Installation, basic operations, and data visualization (ggplot2) | [Session 1](https://davidtdep.github.io/Fundamentals_of_R_for_Data_Analysis/slides/Session_1.html) |
+| 2️⃣ | Statistical Testing | Hypothesis testing (Mann-Whitney, Wilcoxon, ANOVA, etc.) with visualization | _Coming soon_ |
+| 3️⃣ | Correlation & Regression | Correlation analysis, regression modeling, and heatmaps | _Coming soon_ |
+| 4️⃣ | ROC Curves & Feedback | ROC analysis, review session, and project briefing | _Coming soon_ |
+| 5️⃣ | Final Project | Real dataset analysis, presentation, and peer review | _Coming soon_ |
 
 ---
 
@@ -70,4 +70,3 @@ This course material is licensed under the **MIT License**. You are free to use,
 📚 [R-Charts](https://r-charts.com/) - Various chart types in R.  
 
 🚀 **Happy Coding with R!**
-
