@@ -1,0 +1,44 @@
+    ---
+
+    # 🛠️ Getting Started with R  
+    - Install **R** and **RStudio**  
+    - RStudio interface overview  
+    - Basic operations in R  
+
+    ---
+
+    # 🎨 What is ggplot2?  
+    - Part of the **tidyverse**  
+    - Based on **Grammar of Graphics**  
+    - Allows layered plotting  
+
+    ```r
+    library(ggplot2)
+    ggplot(mtcars, aes(x=mpg, y=hp)) + geom_point()
+    ```
+
+    ---
+
+    # 📊 Barplot Example  
+    ```r
+    ggplot(mtcars, aes(x=factor(cyl))) + geom_bar()
+    ```
+    ![Barplot Example](https://upload.wikimedia.org/wikipedia/commons/8/89/Ggplot2-bar-chart.png)
+
+    ---
+
+    # 📊 Scatter Plot Example  
+    ```r
+    ggplot(mtcars, aes(x=mpg, y=hp)) + geom_point()
+    ```
+    ![Scatterplot](https://upload.wikimedia.org/wikipedia/commons/9/92/Ggplot2-scatter-plot.png)
+
+    ---
+
+    # 🎯 Summary  
+    - **ggplot2** is powerful and flexible  
+    - Basic plots: **barplots, scatterplots, boxplots, line charts**  
+    - Next steps: **customizing themes & colors**  
+
+    🚀 **Let's practice!**  
+</marp>
