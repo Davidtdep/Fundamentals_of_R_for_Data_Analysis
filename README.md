@@ -74,7 +74,7 @@ This course material is licensed under the **MIT License**. You are free to use,
 
 ## 🔬 Additional Articles
 
-📚 [Why scientists are using GitHub (Nature)](https://www.nature.com/articles/538127a#change-history)  
-📚 [Importance of publishing research code (Nature)](https://www.nature.com/articles/467753a)
+📚 [Democratic databases: science on GitHub (Nature)](https://www.nature.com/articles/538127a#change-history)  
+📚 [Publish your computer code: it is good enough (Nature)](https://www.nature.com/articles/467753a)
 
 🚀 **Happy Coding with R!**
