@@ -68,5 +68,13 @@ This course material is licensed under the **MIT License**. You are free to use,
 ## 🔗 Additional Resources
 📚 [R Graph Gallery](https://r-graph-gallery.com/) - Inspiration for ggplot2 visualizations.  
 📚 [R-Charts](https://r-charts.com/) - Various chart types in R.  
+📚 [Data-to-Viz (Venn Diagram Section)](https://www.data-to-viz.com/#venn) - Additional resource for data visualization.
+[Read the full license](LICENSE)
+
+---
+
+## 🔬 Additional Articles
+📚 [Why scientists are using GitHub (Nature)](https://www.nature.com/articles/538127a#change-history)
+📚 [Importance of publishing research code (Nature)](https://www.nature.com/articles/467753a)
 
 🚀 **Happy Coding with R!**
