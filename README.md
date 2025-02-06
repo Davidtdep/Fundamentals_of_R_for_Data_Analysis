@@ -75,6 +75,7 @@ This course material is licensed under the **MIT License**. You are free to use,
 ## 🔬 Additional Articles
 
 📚 [Democratic databases: science on GitHub (Nature)](https://www.nature.com/articles/538127a#change-history)  
-📚 [Publish your computer code: it is good enough (Nature)](https://www.nature.com/articles/467753a)
+📚 [Publish your computer code: it is good enough (Nature)](https://www.nature.com/articles/467753a)  
+📚 [Show Me the Data (J Gen Physiol)](https://rupress.org/jgp/article/131/1/3/42690/Show-Me-the-Data)
 
 🚀 **Happy Coding with R!**
