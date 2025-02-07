@@ -38,6 +38,106 @@
                     <li>Data visualization with <strong>ggplot2</strong></li>
                 </ul>
             </section>
+            
+            <section>
+    <div class="title">10 Basic R Functions</div>
+    <pre><code class="r">
+# 1. summary(): Summary statistics
+summary(mtcars)
+
+# 2. head(): First rows of a dataset
+head(mtcars)
+
+# 3. tail(): Last rows of a dataset
+tail(mtcars)
+
+# 4. mean(): Compute the mean
+mean(mtcars$mpg)
+
+# 5. median(): Compute the median
+median(mtcars$mpg)
+
+# 6. sd(): Standard deviation
+sd(mtcars$mpg)
+
+# 7. table(): Frequency table
+table(mtcars$cyl)
+
+# 8. length(): Count elements
+length(mtcars$mpg)
+
+# 9. str(): Structure of an object
+str(mtcars)
+
+# 10. class(): Data type of an object
+class(mtcars)
+    </code></pre>
+</section>
+
+<section>
+    <div class="title">`filter()`: Select rows based on conditions</div>
+    <pre><code class="r">
+# Select cars with 6 cylinders
+library(dplyr)
+mtcars %>% filter(cyl == 6)
+    </code></pre>
+    <p style="text-align: center; font-size: 0.8em;">✅ Returns only rows where `cyl` is 6.</p>
+</section>
+
+<section>
+    <div class="title">`select()`: Choose specific columns</div>
+    <pre><code class="r">
+# Select only mpg, cyl, and hp columns
+library(dplyr)
+mtcars %>% select(mpg, cyl, hp)
+    </code></pre>
+    <p style="text-align: center; font-size: 0.8em;">✅ Returns a table with only the selected columns.</p>
+</section>
+
+<section>
+    <div class="title">`mutate()`: Create or modify columns</div>
+    <pre><code class="r">
+# Add a new column: horsepower per cylinder
+library(dplyr)
+mtcars %>% mutate(hp_per_cyl = hp / cyl)
+    </code></pre>
+    <p style="text-align: center; font-size: 0.8em;">✅ Adds a new column `hp_per_cyl` with computed values.</p>
+</section>
+
+
+<section>
+    <div class="title">`group_by()` + `summarise()`: Aggregate data</div>
+    <pre><code class="r">
+# Calculate mean mpg per cylinder group
+library(dplyr)
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mean_mpg = mean(mpg))
+    </code></pre>
+    <p style="text-align: center; font-size: 0.8em;">✅ Returns a summary table with the mean `mpg` for each `cyl` group.</p>
+</section>
+
+<section>
+    <div class="title">Basic Plots in Base R</div>
+    <pre><code class="r">
+# 1. Scatter plot (plot)
+plot(x, y, main="Title", xlab="X Label", ylab="Y Label")
+
+# 2. Boxplot (boxplot)
+boxplot(y ~ x, data=df, main="Title", xlab="X Label", ylab="Y Label")
+
+# 3. Histogram (hist)
+hist(x, main="Title", xlab="X Label", breaks=10, col="lightblue")
+
+# 4. Barplot (barplot)
+barplot(table(x), main="Title", xlab="X Label", ylab="Count")
+
+# 5. Pie chart (pie)
+pie(table(x), main="Title")
+    </code></pre>
+</section>
+
+
 
             <section>
                 <div class="title">What is ggplot2?</div>
@@ -69,6 +169,24 @@
                     <tr><td>Facets</td><td>Plotting small multiples.</td></tr>
                 </table>
             </section>
+
+<section>
+    <div class="title">Basic Structure of `ggplot2`</div>
+    <p style="text-align: center; font-size: 1em;">
+        `ggplot2` follows a layered approach to building plots.
+    </p>
+    <pre><code class="r">
+# Basic structure of a ggplot:
+library(ggplot2)
+
+ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+  geom_point()
+    </code></pre>
+    <p style="text-align: center; font-size: 0.9em;">
+        ✅ This code creates a scatter plot of `wt` vs `mpg` from `mtcars`.
+    </p>
+</section>
+
 
             <section>
                 <div class="title">Additional Resources</div>
