@@ -44,7 +44,7 @@ ggplot(data, aes(x = Treatment, fill = Gender)) +
 # Create a summary grouped by MeasurementDate and Treatment
 daily_summary <- data %>%
   group_by(MeasurementDate, Treatment) %>%
-  summarise(avg_post_systolic = mean(Post_Systolic), .groups = "drop")
+  summarise(avg_post_systolic = mean(Post_Systolic))
 
 # Plot the daily averages for each treatment group
 ggplot(daily_summary, aes(x = MeasurementDate, y = avg_post_systolic, color = Treatment)) +
