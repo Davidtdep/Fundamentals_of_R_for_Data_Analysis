@@ -14,9 +14,10 @@
         .reveal section img { max-width: 100%; height: auto; }
         pre code { font-size: 0.9em; display: block; white-space: pre-wrap; }
         .title { font-size: 1.3em; font-weight: bold; text-align: center; margin-bottom: 1em; }
-        table { width: 80%; border-collapse: collapse; text-align: center; font-size: 0.6em; margin: auto; border-spacing: 0; border: none; }
-        th { padding: 8px; text-align: left; border: none; }
-        td { padding: 8px; text-align: left; border: none; }
+        .small-title { font-size: 1em; font-weight: bold; text-align: left; margin-bottom: 0.5em; }
+        table { width: 90%; border-collapse: collapse; text-align: center; font-size: 0.5em; margin: auto; border-spacing: 0; }
+        th, td { padding: 4px 15px; text-align: left; height: 1.2em; } /* Aumenté el padding en todas las celdas */
+        th:nth-child(2), td:nth-child(2) { width: 13%; } /* Ajuste del ancho de la columna "p-value" */
         tr:nth-child(even) { background-color: #333; }
         tr:nth-child(odd) { background-color: #222; }
     </style>
@@ -39,9 +40,304 @@
             </section>
             
             <section>
-    <div class="title">What is normality?</div>
-    <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/normalityPlots.svg" alt="Normality Plots">
+                <div class="title">What is normality?</div>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/normalityPlots.svg" alt="Normality Plots">
+            </section>
+
+            <!-- New section with table -->
+            <section>
+                <div class="small-title">How to determine if my data is normally distributed?</div>
+                <table>
+                    <tr>
+                        <th>Test</th>
+                        <th>p-value</th>
+                        <th>Interpretation</th>
+                        <th>Selection Criteria</th>
+                    </tr>
+                    <tr>
+                        <td>Shapiro-Wilk (SW)</td>
+                        <td>p > 0.05</td>
+                        <td>Do not reject normality</td>
+                        <td>Best for small samples (n < 2000)</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>p < 0.05</td>
+                        <td>Reject normality</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Anderson-Darling (AD)</td>
+                        <td>p > 0.05</td>
+                        <td>Do not reject normality</td>
+                        <td>Better for medium to large samples (n > 2000)</td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>p < 0.05</td>
+                        <td>Reject normality</td>
+                        <td> </td>
+                    </tr>
+                </table>
+            </section>
+            
+<section>
+    <p style="font-size: 0.7em;">Here is how to perform the <strong>Shapiro-Wilk</strong> and <strong>Anderson-Darling</strong> tests in R.</p>
+    
+    <pre><code class="language-r">
+    # Shapiro-Wilk test (Best for small samples)
+    shapiro.test(dataset$column)
+
+    # Anderson-Darling test (Better for larger samples)
+    library(nortest)
+    ad.test(dataset$column)
+    </code></pre>
+
+    <p style="font-size: 0.7em;"><strong>Interpretation:</strong> If p-value &gt; 0.05, do not reject normality. If p-value &lt; 0.05, reject normality.</p>
 </section>
+
+
+<section>
+    <div class="small-title" style="text-align: center;">What if my data is qualitative?</div>
+    <table>
+        <tr>
+            <th>Test</th>
+            <th style="width: 40%;">When to Use</th>
+            <th>Selection Criteria</th>
+        </tr>
+        <tr>
+            <td>Chi-Square (χ²)</td>
+            <td>Tests association between two categorical variables</td>
+            <td>Best for large sample sizes (expected frequencies >5)</td>
+        </tr>
+        <tr>
+            <td>Fisher's Exact</td>
+            <td>Tests association between two categorical variables</td>
+            <td>Better for small sample sizes (expected frequencies <5)</td>
+        </tr>
+    </table>
+</section>
+
+
+
+
+
+<section>
+    <div class="small-title" style="text-align: center;">What is expected frequency (EF)?</div>
+    <p style="font-size: 0.8em; text-align: center; margin-bottom: 1em;">
+        EF = (Row Total × Column Total) ÷ Grand Total
+    </p>
+
+    <div style="display: flex; justify-content: space-evenly; align-items: center; font-size: 0.8em;">
+        <div style="margin-right: 40px;">
+            <p style="text-align: center;"><strong>EF > 5</strong></p>
+            <table style="font-size: 1em;">
+                <tr>
+                    <th></th>
+                    <th>Group A</th>
+                    <th>Group B</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Yes</td>
+                    <td>50</td>
+                    <td>30</td>
+                    <td>80</td>
+                </tr>
+                <tr>
+                    <td>No</td>
+                    <td>40</td>
+                    <td>20</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>90</td>
+                    <td>50</td>
+                    <td>140</td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin-left: 40px;">
+            <p style="text-align: center;"><strong>EF < 5</strong></p>
+            <table style="font-size: 1em;">
+                <tr>
+                    <th></th>
+                    <th>Group A</th>
+                    <th>Group B</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Yes</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>No</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>7</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <p style="font-size: 0.7em; text-align: center;">How to perform these tests using a contingency table in R.</p>
+
+    <pre><code class="language-r"># Create a contingency table
+data_matrix <- matrix(c(20, 10, 15, 5), nrow = 2, byrow = TRUE)
+colnames(data_matrix) <- c("Success", "Failure")
+rownames(data_matrix) <- c("Group A", "Group B")
+
+# Chi-Square Test
+chisq.test(data_matrix)  # Best if expected values > 5
+
+# Fisher's Exact Test
+fisher.test(data_matrix) # Recommended if expected values < 5</code></pre>
+
+    <p style="font-size: 0.7em; text-align: center;"><strong>Interpretation:</strong> If p-value &gt; 0.05, do not reject independence. If p-value &lt; 0.05, reject independence.</p>
+</section>
+
+
+
+<section>
+    <div class="small-title" style="text-align: center; font-size: 1em;">Parametric & Non-Parametric Tests</div>
+
+    <table style="width: 95%; font-size: 0.6em; margin: auto;">
+        <tr>
+            <th style="width: 30%;">Objective</th>
+            <th style="width: 35%;">Parametric Test</th>
+            <th style="width: 35%;">Non-Parametric Test</th>
+        </tr>
+        <tr>
+            <td>Compare means (two groups)</td>
+            <td>t-test (Student's t-test)</td>
+            <td>Mann-Whitney U (Wilcoxon rank-sum test)</td>
+        </tr>
+        <tr>
+            <td>Compare means (paired samples)</td>
+            <td>Paired t-test</td>
+            <td>Wilcoxon signed-rank test</td>
+        </tr>
+        <tr>
+            <td>Compare means (multiple groups)</td>
+            <td>ANOVA (Analysis of Variance)</td>
+            <td>Kruskal-Wallis test</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+    <p style="font-size: 0.7em; text-align: center;">Here is how to perform the parametric and non-parametric tests in R.</p>
+
+    <pre><code class="language-r" style="font-size: 0.7em;">
+# Generate sample data
+set.seed(123)
+group1 <- rnorm(30, mean = 50, sd = 10)
+group2 <- rnorm(30, mean = 55, sd = 10)
+
+# 1. Compare means (two groups)
+# Parametric: Student's t-test
+t.test(group1, group2, var.equal = TRUE)
+
+# Non-Parametric: Mann-Whitney U test (Wilcoxon rank-sum test)
+wilcox.test(group1, group2)
+
+# 2. Compare means (paired samples)
+paired_group1 <- rnorm(30, mean = 50, sd = 10)
+paired_group2 <- paired_group1 + rnorm(30, mean = 5, sd = 2)
+
+# Parametric: Paired t-test
+t.test(paired_group1, paired_group2, paired = TRUE)
+
+# Non-Parametric: Wilcoxon signed-rank test
+wilcox.test(paired_group1, paired_group2, paired = TRUE)
+
+# 3. Compare means (multiple groups)
+group3 <- rnorm(30, mean = 60, sd = 10)
+data <- data.frame(
+  value = c(group1, group2, group3),
+  group = rep(c("A", "B", "C"), each = 30)
+)
+
+# Parametric: ANOVA
+anova_result <- aov(value ~ group, data = data)
+summary(anova_result)
+
+# Non-Parametric: Kruskal-Wallis test
+kruskal.test(value ~ group, data = data)
+    </code></pre>
+
+    <p style="font-size: 0.7em; text-align: center;">
+        Interpretation: If p-value &gt; 0.05, do not reject the null hypothesis. If p-value &lt; 0.05, reject it.
+    </p>
+</section>
+
+
+<section>
+    <div class="small-title">Post-hoc Tests for ANOVA and Kruskal-Wallis</div>
+    <table>
+        <tr>
+            <th>Test</th>
+            <th>Post-hoc Method</th>
+            <th>When to Use</th>
+        </tr>
+        <tr>
+            <td>ANOVA</td>
+            <td>Tukey HSD</td>
+            <td>Multiple comparisons assuming homogeneous variances</td>
+        </tr>
+        <tr>
+            <td>Kruskal-Wallis</td>
+            <td>Dunn’s Test</td>
+            <td>Multiple comparisons for non-parametric data</td>
+        </tr>
+    </table>
+</section>
+
+
+
+<section>
+    <p style="font-size: 0.7em; text-align: center;">Here is how to perform <strong>Tukey HSD</strong> (for ANOVA) and <strong>Dunn’s Test</strong> (for Kruskal-Wallis) in R.</p>
+    
+    <pre><code class="language-r">
+# Load required library
+library(FSA)
+
+# Sample dataset
+set.seed(123)
+group <- rep(c("A", "B", "C"), each = 10)
+values <- c(rnorm(10, mean = 5, sd = 1),
+            rnorm(10, mean = 6, sd = 1),
+            rnorm(10, mean = 7, sd = 1))
+data <- data.frame(group, values)
+
+# ANOVA and Tukey HSD (For parametric data)
+anova_model <- aov(values ~ group, data = data)
+tukey_result <- TukeyHSD(anova_model)
+print(tukey_result)
+
+# Kruskal-Wallis and Dunn’s Test (For non-parametric data)
+kruskal_test <- kruskal.test(values ~ group, data = data)
+dunn_result <- dunnTest(values ~ group, data = data, method = "bonferroni")
+print(dunn_result)
+    </code></pre>
+
+    <p style="font-size: 0.7em; text-align: center;"><strong>Interpretation:</strong> If p-value &lt; 0.05, at least one group is significantly different.</p>
+</section>
+
+
 
         </div>
     </div>
