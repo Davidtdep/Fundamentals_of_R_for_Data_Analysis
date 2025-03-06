@@ -28,7 +28,7 @@ Train participants in the use of **R** for data manipulation, analysis, and visu
 |------------|----------|------------------|------------|
 | 1️⃣ | Introduction to R and RStudio | Installation, basic operations, and data visualization (ggplot2) | [Session 1](https://davidtdep.github.io/Fundamentals_of_R_for_Data_Analysis/slides/Session_1.html) |
 | 2️⃣ | Statistical Testing | Hypothesis testing (Mann-Whitney, Wilcoxon, ANOVA, etc.) with visualization | [Session 2](https://davidtdep.github.io/Fundamentals_of_R_for_Data_Analysis/slides/Session_2.html) |
-| 3️⃣ | Correlation & Regression | Correlation analysis, regression modeling, and heatmaps | [Sessio 3](https://davidtdep.github.io/Fundamentals_of_R_for_Data_Analysis/slides/Session_3.html_ |
+| 3️⃣ | Correlation & Regression | Correlation analysis, regression modeling, and heatmaps | [Session 3](https://davidtdep.github.io/Fundamentals_of_R_for_Data_Analysis/slides/Session_3.html) |
 | 4️⃣ | ROC Curves & Feedback | ROC analysis, review session, and project briefing | _Coming soon_ |
 | 5️⃣ | Final Project | Real dataset analysis, presentation, and peer review | _Coming soon_ |
 
