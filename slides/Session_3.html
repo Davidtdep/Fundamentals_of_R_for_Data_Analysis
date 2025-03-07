@@ -50,6 +50,51 @@
                 <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/corNS.svg" alt="No Correlation" style="width: 80%; height: auto; display: block; margin: auto;">
             </section>            
 
+            <section>
+                <div class="title" style="font-size: 1em;">Pearson & Spearman Correlations in R</div>
+                
+                <p style="font-size: 0.5em;">To compute correlations in R, use the <code>cor()</code> function. 
+                    Pearson measures linear relationships, while Spearman is rank-based.</p>
+                
+                <pre><code class="language-r"># Load example data
+data <- data.frame(
+var1 = rnorm(100),  # Continuous variable
+var2 = rnorm(100)   # Another continuous variable
+
+# Pearson correlation (linear relationship)
+cor(data$var1, data$var2, method = "pearson")
+
+# Spearman correlation (monotonic relationship)
+cor(data$var1, data$var2, method = "spearman")</code></pre>
+            </section>
+            
+            <section>
+                <div class="title" style="font-size: 1em;">Interpreting Correlation Statistics in R</div>
+                
+                <p style="font-size: 0.7em;">
+                    When computing correlations in R, key statistics help interpret the results:
+                </p>
+                
+                <ul style="font-size: 0.7em;">
+                    <li><b>Correlation coefficient (r / ρ)</b>: Measures the strength and direction of the relationship.</li>
+                    <li><b>p-value</b>: Tests whether the correlation is statistically significant.</li>
+                    <li><b>Confidence interval</b>: Indicates the range within which the true correlation lies.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <div class="title" style="font-size: 1em;">Regression models</div>
+            </section>
+            
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/regLIN.svg" alt="Linear regression" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>
+            
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/regLOG.svg" alt="Logistic regression" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>                        
+            
+
         </div>
     </div>
     <script>
