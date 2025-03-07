@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 4 - ROC Analysis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark.min.css">
+    <style>
+        .reveal section img { max-width: 100%; height: auto; }
+        pre code { font-size: 0.9em; display: block; white-space: pre-wrap; }
+        .title { font-size: 1.3em; font-weight: bold; text-align: center; margin-bottom: 1em; }
+        .small-title { font-size: 1em; font-weight: bold; text-align: left; margin-bottom: 0.5em; }
+        table { width: 90%; border-collapse: collapse; text-align: center; font-size: 0.5em; margin: auto; border-spacing: 0; }
+        th, td { padding: 4px 15px; text-align: left; height: 1.2em; } /* Aumenté el padding en todas las celdas */
+        th:nth-child(2), td:nth-child(2) { width: 13%; } /* Ajuste del ancho de la columna "p-value" */
+        tr:nth-child(even) { background-color: #333; }
+        tr:nth-child(odd) { background-color: #222; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <div class="text" style="font-size: 0.8em; text-align: center; margin-bottom: 0.5em;">Session 4</div>
+                <div class="title">ROC Analysis</div>
+            </section>
+            
+            <section>
+                <div class="title">Session Contents</div>
+                <ul>
+                    <li>ROC curve</li>
+                </ul>
+            </section>
+
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/ROChigh.svg" alt="Positive Correlation" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>
+            
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/ROClow.svg" alt="Negative Correlation" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>
+                    
+
+            <section>
+                <div class="title" style="font-size: 1em;">Pearson & Spearman Correlations in R</div>
+                
+                <p style="font-size: 0.5em;">To compute correlations in R, use the <code>cor()</code> function. 
+                    Pearson measures linear relationships, while Spearman is rank-based.</p>
+                
+                <pre><code class="language-r"># Load example data
+data <- data.frame(
+var1 = rnorm(100),  # Continuous variable
+var2 = rnorm(100)   # Another continuous variable
+
+# Pearson correlation (linear relationship)
+cor(data$var1, data$var2, method = "pearson")
+
+# Spearman correlation (monotonic relationship)
+cor(data$var1, data$var2, method = "spearman")</code></pre>
+            </section>
+            
+            <section>
+                <div class="title" style="font-size: 1em;">Interpreting Correlation Statistics in R</div>
+                
+                <p style="font-size: 0.7em;">
+                    When computing correlations in R, key statistics help interpret the results:
+                </p>
+                
+                <ul style="font-size: 0.7em;">
+                    <li><b>Correlation coefficient (r / ρ)</b>: Measures the strength and direction of the relationship.</li>
+                    <li><b>p-value</b>: Tests whether the correlation is statistically significant.</li>
+                    <li><b>Confidence interval</b>: Indicates the range within which the true correlation lies.</li>
+                </ul>
+            </section>
+            
+            <section>
+                <div class="title" style="font-size: 1em;">Regression models</div>
+            </section>
+            
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/regLIN.svg" alt="Linear regression" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>
+            
+            <section>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/regLOG.svg" alt="Logistic regression" style="width: 80%; height: auto; display: block; margin: auto;">
+            </section>                        
+            
+            <section>
+                <div class="title" style="font-size: 0.8em;">Simple & Adjusted Linear Regression in R</div>
+                
+                <p style="font-size: 0.5em;">
+                    A simple linear regression includes one predictor, while an adjusted model controls for additional variables.
+                </p>
+            
+                <ul style="font-size: 0.5em;">
+                    <li><b>Simple Model:</b> Outcome (Y) predicted by a single predictor (X).</li>
+                    <li><b>Adjusted Model:</b> Additional covariates (Z1, Z2) are included to account for confounding.</li>
+                </ul>
+            
+                <pre><code class="language-r"># Load example dataset
+data <- data.frame(
+    Y  = rnorm(100, mean = 50, sd = 10),  # Outcome variable
+    X  = rnorm(100, mean = 20, sd = 5),   # Main predictor
+    Z1 = rnorm(100, mean = 10, sd = 3),   # Adjusting variable 1
+    Z2 = rnorm(100, mean = 30, sd = 7)    # Adjusting variable 2
+)
+
+# Simple linear regression
+model_simple <- lm(Y ~ X, data = data)
+summary(model_simple)
+
+# Adjusted linear regression
+model_adjusted <- lm(Y ~ X + Z1 + Z2, data = data)
+summary(model_adjusted)</code></pre>
+            </section>
+
+            <section>
+                <div class="title" style="font-size: 1em;">Understanding Linear Regression Output</div>
+                
+                <p style="font-size: 0.5em;">
+                    When running <code>summary(lm())</code> in R, key statistics help interpret the model:
+                </p>
+            
+                <ul style="font-size: 0.5em;">
+                    <li><b>Estimate (β):</b> Coefficient that quantifies the effect of the predictor.</li>
+                    <li><b>Std. Error:</b> Variability of the coefficient estimate.</li>
+                    <li><b>p-value:</b> Probability that the coefficient is significantly different from 0.</li>
+                    <li><b>R² (R-squared):</b> Proportion of variance in Y explained by the model.</li>
+                </ul>
+            
+                <pre><code class="language-r"># Run a simple linear regression
+model <- lm(Y ~ X, data = data)
+summary(model)</code></pre>
+            </section>
+            
+            <section>
+                <div class="title" style="font-size: 1em;">Logistic Regression in R</div>
+                
+                <p style="font-size: 0.5em;">
+                    Logistic regression models the probability of a binary outcome using a predictor variable.
+                </p>
+            
+                <ul style="font-size: 0.5em;">
+                    <li><b>Outcome (Y):</b> Binary variable (e.g., 1 = Success, 0 = Failure).</li>
+                    <li><b>Predictor (X):</b> Continuous or categorical variable affecting Y.</li>
+                </ul>
+            
+                <pre><code class="language-r"># Load example dataset
+data <- data.frame(
+    Y = rbinom(100, 1, prob = 0.5),  # Binary outcome (0 or 1)
+    X = rnorm(100, mean = 20, sd = 5)  # Predictor variable
+
+# Logistic regression model
+model_logistic <- glm(Y ~ X, data = data, family = binomial)
+summary(model_logistic)</code></pre>
+            </section>
+            
+
+            <section>
+                <div class="title" style="font-size: 1em;">Understanding Logistic Regression Output</div>
+                
+                <p style="font-size: 0.5em;">
+                    The <code>summary(glm())</code> function in R provides key statistics to interpret a logistic regression model:
+                </p>
+            
+                <ul style="font-size: 0.5em;">
+                    <li><b>Estimate (β):</b> Log-odds change for each unit increase in the predictor.</li>
+                    <li><b>Std. Error:</b> Variability of the coefficient estimate.</li>
+                    <li><b>p-value:</b> Probability that the coefficient is significantly different from 0.</li>
+                </ul>
+            
+                <pre><code class="language-r"># Run a logistic regression
+model_logistic <- glm(Y ~ X, data = data, family = binomial)
+summary(model_logistic)</code></pre>
+            </section>
+
+            <section>
+                <div class="title" style="font-size: 0.8em;">Differences Between Linear and Logistic Regression</div>
+            
+                <table style="width: 90%; border-collapse: collapse; text-align: center; font-size: 0.5em; margin: auto; border-spacing: 0;">
+                    <tr style="background-color: #222; color: white;">
+                        <th style="width: 25%;">Characteristic</th>
+                        <th style="width: 37.5%;">Linear Regression</th>
+                        <th style="width: 37.5%;">Logistic Regression</th>
+                    </tr>
+                    <tr>
+                        <td><b>Type of Y Variable</b></td>
+                        <td>Continuous (e.g., blood pressure)</td>
+                        <td>Binary (e.g., disease: Yes/No)</td>
+                    </tr>
+                    <tr style="background-color: #333;">
+                        <td><b>Interpretation of β</b></td>
+                        <td>Change in Y per unit increase in X</td>
+                        <td>Change in <i>log-odds</i> of Y per unit increase in X</td>
+                    </tr>
+                    <tr>
+                        <td><b>Predictions</b></td>
+                        <td>Continuous values</td>
+                        <td>Probabilities (between 0 and 1)</td>
+                    </tr>
+                </table>
+            </section>
+            
+            <section>           
+                <div class="title" style="font-size: 0.8em;">Interpretation of Logistic RM</div>
+
+                <pre style="font-size: 0.5em;"><code class="language-r"># Fit logistic regression model
+model <- glm(Y ~ X, data = data, family = binomial)
+
+# Extract coefficients and standard errors
+coef_table <- summary(model)$coefficients
+beta <- coef_table["X", "Estimate"]  # Logistic regression coefficient
+se <- coef_table["X", "Std. Error"]  # Standard error
+
+# Convert to OR and 95% CI
+OR <- exp(beta)
+CI_lower <- exp(beta - 1.96 * se)
+CI_upper <- exp(beta + 1.96 * se)
+
+# Print results
+c(OR = OR, CI_lower = CI_lower, CI_upper = CI_upper)</code></pre>
+            </section>
+            
+            
+            
+
+        </div>
+    </div>
+    <script>
+        Reveal.initialize();
+        hljs.highlightAll();
+    </script>
+</body>
+</html>
