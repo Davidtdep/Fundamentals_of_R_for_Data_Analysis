@@ -1,0 +1,81 @@
+Sitio,Habitat,Temperatura,Abundancia
+S1,Arrecife,28.3,32
+S2,Arrecife,28.1,33
+S3,Arrecife,28.5,36
+S4,Arrecife,27.9,31
+S5,Arrecife,28.6,35
+S6,Arrecife,28.0,30
+S7,Arrecife,28.4,34
+S8,Arrecife,28.2,33
+S9,Arrecife,27.8,30
+S10,Arrecife,28.7,37
+S11,Arrecife,28.5,36
+S12,Arrecife,28.1,32
+S13,Arrecife,28.0,31
+S14,Arrecife,28.3,34
+S15,Arrecife,28.2,32
+S16,Arrecife,27.7,30
+S17,Arrecife,28.6,36
+S18,Arrecife,28.4,33
+S19,Arrecife,28.3,35
+S20,Arrecife,28.1,31
+S21,Manglar,26.8,22
+S22,Manglar,27.0,25
+S23,Manglar,26.6,21
+S24,Manglar,27.2,24
+S25,Manglar,27.1,23
+S26,Manglar,26.9,22
+S27,Manglar,27.0,24
+S28,Manglar,26.7,23
+S29,Manglar,26.5,20
+S30,Manglar,27.1,26
+S31,Manglar,26.8,22
+S32,Manglar,26.6,21
+S33,Manglar,27.2,25
+S34,Manglar,26.9,22
+S35,Manglar,27.0,23
+S36,Manglar,26.8,24
+S37,Manglar,27.1,25
+S38,Manglar,26.7,23
+S39,Manglar,26.5,21
+S40,Manglar,27.0,24
+S41,Pasto Marino,28.8,39
+S42,Pasto Marino,29.0,42
+S43,Pasto Marino,28.7,40
+S44,Pasto Marino,29.2,41
+S45,Pasto Marino,29.1,43
+S46,Pasto Marino,28.9,39
+S47,Pasto Marino,29.0,40
+S48,Pasto Marino,29.3,44
+S49,Pasto Marino,28.8,38
+S50,Pasto Marino,29.1,42
+S51,Pasto Marino,29.2,41
+S52,Pasto Marino,28.7,39
+S53,Pasto Marino,28.9,40
+S54,Pasto Marino,29.0,43
+S55,Pasto Marino,28.8,39
+S56,Pasto Marino,29.3,44
+S57,Pasto Marino,29.1,41
+S58,Pasto Marino,29.2,43
+S59,Pasto Marino,28.9,42
+S60,Pasto Marino,29.0,40
+S61,Arrecife,28.3,33
+S62,Arrecife,28.0,32
+S63,Arrecife,28.4,35
+S64,Arrecife,28.1,31
+S65,Arrecife,28.2,34
+S66,Manglar,26.7,22
+S67,Manglar,26.9,24
+S68,Manglar,27.1,25
+S69,Manglar,26.6,21
+S70,Manglar,27.0,23
+S71,Pasto Marino,28.9,42
+S72,Pasto Marino,29.2,44
+S73,Pasto Marino,29.1,41
+S74,Pasto Marino,29.0,40
+S75,Pasto Marino,28.8,39
+S76,Arrecife,28.5,36
+S77,Arrecife,28.1,32
+S78,Manglar,27.2,24
+S79,Pasto Marino,29.1,43
+S80,Pasto Marino,29.2,41
