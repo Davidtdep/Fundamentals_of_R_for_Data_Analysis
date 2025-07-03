@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 5 - Diversity Indices in R</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/theme/black.min.css">
+    <!-- Syntax highlighting plugin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/github-dark.min.css">
+    <style>
+        .reveal section img { max-width: 100%; height: auto; }
+        pre {
+            background: #0d1117;
+            padding: 1em;
+            border-radius: 8px;
+            margin: 1em 0;
+            overflow-x: auto;
+        }
+        pre code {
+            font-size: 0.9em;
+            display: block;
+            white-space: pre-wrap;
+            font-family: 'Fira Code', monospace;
+        }
+        .text { font-size: 0.8em; text-align: center; margin-bottom: 0.5em; }
+        .title { font-size: 1.3em; font-weight: bold; text-align: center; margin-bottom: 1em; text-transform: none; }
+        .subtitle { font-size: 1em; text-align: center; margin-bottom: 1em; text-transform: none; }
+        .content ul { list-style: disc; margin-left: 1.5em; font-size: 1em; }
+        .content p { font-size: 1em; }
+        .small-list ul { font-size: 0.7em; margin-left: 1.2em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <div class="text">Session 5</div>
+                <div class="title">Diversity Indices in R</div>
+                <div class="subtitle">An Introduction to Alpha and Beta Diversity Metrics</div>
+            </section>
+
+            <section>
+                <div class="title">Session Contents</div>
+                <div class="content">
+                    <ul>
+                        <li>What is Ecology?</li>
+                        <li>Ecological Diversity: Richness and Abundance</li>
+                        <li>Alpha and Beta Diversity</li>
+                        <li>Data Import and Transformation</li>
+                        <li>Alpha Diversity Indices</li>
+                        <li>Beta Diversity Measures</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">What is Ecology?</div>
+                <div class="content">
+                    <p>Study of interactions among organisms and between organisms and their environment.</p>
+                    <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/population_community.jpg" alt="Population Community">
+                    <p>Populations: groups of the same species in an area<br>Communities: all species interacting in a shared space</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Ecological Diversity</div>
+                <div class="content">
+                    <p>It refers to the variety and relative abundance of species in a community. It is quantified using diversity indices that combine species richness and evenness.</p>
+                    <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/communities.png" alt="Richness and Abundance illustration">
+                    <div class="small-list">
+                        <ul>
+                            <li><strong>Richness:</strong> the total number of different species present in a community</li>
+                            <li><strong>Abundance:</strong> number of individuals per species</li>
+                            <li><strong>Evenness:</strong> how equally distributed the individuals are among the species</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Alpha and Beta Diversity</div>
+                <div class="small-list">
+                    <ul>
+                        <li><strong>Alpha diversity:</strong> diversity within a site or sample</li>
+                        <li><strong>Beta diversity:</strong> comparison of diversity between sites</li>
+                    </ul>
+                </div>
+                <img src="/Fundamentals_of_R_for_Data_Analysis/slides/figures/diversity.png" alt="Alpha and Beta Diversity illustration">
+            </section>
+
+            <section>
+                <div class="title">Data Import & Transformation</div>
+                <pre><code class="language-r"># Import raw data
+ data_largo <- read.csv("path/moluscos_clase_diversidad_sin_ceros.csv")
+
+# Load libraries
+ library(readr); library(tidyr); library(dplyr)
+
+# Wide format: species as columns
+ data_ancho <- data_largo %>%
+   pivot_wider(names_from = Especie, values_from = Abundancia, values_fill = 0)
+
+# Set rownames to zones
+ moluscos_data <- as.data.frame(data_ancho)
+ rownames(moluscos_data) <- moluscos_data$Zona
+ moluscos_data$Zona <- NULL</code></pre>
+            </section>
+
+            <section>
+                <div class="title">Alpha Diversity Indices</div>
+                <div class="content">
+                    <ul>
+                        <li>Species Richness (Riqueza)</li>
+                        <li>Total Abundance (Abundancia)</li>
+                        <li>Shannon Diversity</li>
+                        <li>Simpson & Inverse Simpson</li>
+                        <li>Margalef Index</li>
+                        <li>Pielou's Evenness</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Richness (Riqueza)</div>
+                <div class="content">
+                    <p><strong>Concept:</strong> Number of species present in a sample.<br>
+<strong>R function:</strong> <code>specnumber(data)</code></p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Abundance (Abundancia)</div>
+                <div class="content">
+                    <p><strong>Concept:</strong> Total count of individuals across all species.<br>
+<strong>Calculation:</strong> <code>rowSums(data)</code></p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Shannon Diversity</div>
+                <div class="content">
+                    <p><strong>Concept:</strong> Accounts for both richness and evenness; sensitive to rare species.<br>
+<strong>R function:</strong> <code>diversity(data, index = "shannon")</code></p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Simpson & Inverse Simpson</div>
+                <div class="content">
+                    <p><strong>Simpson's Index (D):</strong> Probability that two random individuals belong to the same species;<br>
+<strong>Calculation:</strong> <code>sum((p_i)^2)</code> where <em>p_i</em> is relative abundance.<br>
+<strong>Inverse Simpson:</strong> <code>diversity(data, index = "simpson")</code> (higher values = greater diversity).</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Margalef Index</div>
+                <div class="content">
+                    <p><strong>Concept:</strong> Species richness normalized by log of total individuals.<br>
+<strong>Calculation:</strong> <code>(S - 1) / log(N)</code>, where S = richness, N = total abundance.</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Pielou's Evenness</div>
+                <div class="content">
+                    <p><strong>Concept:</strong> How evenly individuals are distributed among species.<br>
+<strong>Calculation:</strong> <code>H' / log(S)</code>, where H' = Shannon diversity, S = richness.</p>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Beta Diversity Measures</div>
+                <div class="content">
+                    <p>Compare species composition between sites.<br>
+<code>moluscos_pa <- decostand(moluscos_data, method = "pa")</code></p>
+                    <ul>
+                        <li>Jaccard Distance: <code>vegdist(moluscos_pa, method = "jaccard")</code></li>
+                        <li>Bray-Curtis Dissimilarity: <code>vegdist(moluscos_data, method = "bray")</code></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="title">Example Code</div>
+                <pre><code class="language-r"># Load vegan
+ library(vegan)
+
+# Alpha diversity dataframe
+ diversidad_alfa <- data.frame(
+   Riqueza = specnumber(moluscos_data),
+   Abundancia = rowSums(moluscos_data),
+   Shannon = diversity(moluscos_data, index = "shannon"),
+   Simpson = rowSums((moluscos_data/rowSums(moluscos_data))^2),
+   Inv.Simpson = diversity(moluscos_data, index = "simpson"),
+   Margalef = (specnumber(moluscos_data)-1)/log(rowSums(moluscos_data)),
+   Pielou = diversity(moluscos_data, index = "shannon")/log(specnumber(moluscos_data))
+ )
+
+# Beta diversity distances
+ jaccard <- vegdist(moluscos_pa, method = "jaccard")
+ bray <- vegdist(moluscos_data, method = "bray")
+ print(as.matrix(jaccard))
+ print(as.matrix(bray))</code></pre>
+            </section>
+
+            <section>
+                <div class="title">Thanks for the attention!</div>
+                <div class="content">
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/highlight/highlight.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    plugins: [ RevealHighlight ]
+  });
+    </script>
+</body>
+</html>
